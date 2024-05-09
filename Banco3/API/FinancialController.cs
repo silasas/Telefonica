@@ -29,5 +29,32 @@ namespace Banco3.API
 
             return BadRequest();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-by-code")]
+        public async Task<IActionResult> GetByCode(string code)
+        {
+            var result = await _context.Financial.Where(s => s.Code == code).FirstOrDefaultAsync();
+
+            if (result != null)
+                return Ok(result);
+
+            return BadRequest();
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-by-productcode")]
+        public async Task<IActionResult> GetByProductCode(string productCode)
+        {
+            var result = await _context.Financial.Where(s => s.ProductCode == productCode).FirstOrDefaultAsync();
+
+            if (result != null)
+                return Ok(result);
+
+            return BadRequest();
+        }
     }
 }

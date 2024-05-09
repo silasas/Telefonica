@@ -29,5 +29,33 @@ namespace Banco2.API
 
             return BadRequest();
         }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-by-code")]
+        public async Task<IActionResult> GetByCode(string code)
+        {
+            var result = await _context.Product.Where(s => s.Code == code).FirstOrDefaultAsync();
+
+            if (result != null)
+                return Ok(result);
+
+            return BadRequest();
+        }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-by-customercode")]
+        public async Task<IActionResult> GetByCustomerCode(string customerCode)
+        {
+            var result = await _context.Product.Where(s => s.CustomerCode == customerCode).FirstOrDefaultAsync();
+
+            if (result != null)
+                return Ok(result);
+
+            return BadRequest();
+        }
     }
 }
