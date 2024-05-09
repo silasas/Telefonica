@@ -1,0 +1,23 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.9.34728.123
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "1-Banco1", "1-Banco1", "{8A4DA3BD-A48B-4A29-BDEE-056B19CE927F}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2-Banco2", "2-Banco2", "{335904EB-A38C-40C4-8507-3ACF6AE6223C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3-Banco3", "3-Banco3", "{6587E039-82A3-4ADB-BFC0-8AD9EBBC1948}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "4-Consolida", "4-Consolida", "{8CFA85DD-1A5E-46DA-A8D2-DF4525877904}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "5-Web", "5-Web", "{4C61A5E6-95C5-4971-A020-CCB0812EE746}"
+EndProject
+Global
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {454DFEE8-933B-4FA9-B239-BBFC25204164}
+	EndGlobalSection
+EndGlobal
