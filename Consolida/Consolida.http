@@ -1,0 +1,6 @@
+@Consolida_HostAddress = http://localhost:5290
+
+GET {{Consolida_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
