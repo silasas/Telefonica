@@ -49,5 +49,26 @@ namespace Consolida.API
 
             return BadRequest();
         }
+
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-all-customers-union")]
+        public async Task<IActionResult> GetAllCustomersUnion()
+        {
+            ////Banco 1 = Customer
+            //Banco1Service b1s = new Banco1Service();
+            //var customer = b1s.GetCustomerByCode(customerCode).Result;
+
+            ////Banco 2 = Product
+            //Banco2Service b2s = new Banco2Service();
+            //var product = b2s.GetProductByCustomerCode(customerCode).Result;
+
+            ////Banco 3 = Price
+            //Banco3Service b3s = new Banco3Service();
+            //var price = b3s.GetPriceByProductCode(product.Code).Result;
+
+            return Ok();
+        }
     }
 }
