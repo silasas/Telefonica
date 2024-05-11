@@ -43,5 +43,45 @@ namespace Consolida.Services.Banco3
                 return response = null;
             }
         }
+
+
+        public async Task<List<Price_Response_Json>> GetAllPrices()
+        {
+            var response = new List<Price_Response_Json>() { };
+
+            try
+            {
+                using var client = new HttpClient();
+                client.BaseAddress = new Uri("https://localhost:7045/api/Financial/");
+
+                var jsonResponse = client.GetAsync($"{"get-financial-list"}").Result;
+
+                if (jsonResponse.IsSuccessStatusCode)
+                {
+                    var content = await jsonResponse.Content.ReadAsStringAsync();
+
+                    if (!string.IsNullOrEmpty(content))
+                    {
+                        response = JsonConvert.DeserializeObject<List<Price_Response_Json>>(content);
+                        return response;
+                    }
+
+                    else
+                    {
+                        return response;
+                    }
+                }
+
+                else
+                {
+                    return response;
+                }
+            }
+
+            catch
+            {
+                return response = null;
+            }
+        }
     }
 }

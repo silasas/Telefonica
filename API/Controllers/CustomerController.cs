@@ -15,5 +15,13 @@ namespace API.Controllers
         {
             return Ok();
         }
+
+        [HttpGet]
+        [AllowAnonymous]
+        [Route("get-customers")]
+        public async Task<IActionResult> GetCustomers()
+        {
+            return Ok();
+        }
     }
 }

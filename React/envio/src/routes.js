@@ -15,8 +15,8 @@ export default function Main() {
 
             <Routes>
                 <Route path="/" element={<Home />} exact />
-                <Route path="/download" element={<Download />} exact />
-                <Route path="/upload" element={<Upload />} exact />
+                <Route path="/download/index" element={<Download />} exact />
+                <Route path="/upload/index" element={<Upload />} exact />
             </Routes>
         </BrowserRouter>
 
