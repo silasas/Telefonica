@@ -1,4 +1,5 @@
-﻿using API.Services.Consolida;
+﻿using API.Json;
+using API.Services.Consolida;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -12,9 +13,17 @@ namespace API.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("post-csv-file")]
-        public async Task<IActionResult> CsvFile(string customerCode)
-        {
-            return Ok();
+        public async Task<List<Customer_Response_Json>> CsvFileImport(IFormFile file)
+         {
+            var result = new List<Customer_Response_Json>();
+
+
+
+
+
+
+
+            return result;
         }
 
         [HttpGet]
