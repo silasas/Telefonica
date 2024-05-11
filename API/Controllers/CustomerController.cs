@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using API.Services.Consolida;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -21,7 +22,11 @@ namespace API.Controllers
         [Route("get-customers")]
         public async Task<IActionResult> GetCustomers()
         {
-            return Ok();
+            // Servidor Consolida
+            ConsolidaService cs = new ConsolidaService();
+            var result = cs.GetAllCustomers().Result;
+
+            return Ok(result);
         }
     }
 }

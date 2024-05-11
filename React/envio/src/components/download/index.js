@@ -77,19 +77,19 @@ function Download() {
                     {customer.map(s => (
                         <tr key={s.id}>
                             <td>
-                                {s.customercode}
+                                {s.customerCode}
                             </td>
                             <td>
-                                {s.productcode}
+                                {s.productCode}
                             </td>
                             <td>
-                                {s.firstname}
+                                {s.firstName}
                             </td>
                             <td>
-                                {s.middlename}
+                                {s.middleName}
                             </td>
                             <td>
-                                {s.surname}
+                                {s.surName}
                             </td>
                             <td>
                                 {s.product}
@@ -101,10 +101,7 @@ function Download() {
                             {/*<button onClick={() => editAluno(aluno.id)} type="button">*/}
                             {/*    <FiEdit size="25" color="#17202a" />*/}
                             {/*</button>*/}
-
-                     {/*       <td><Link onClick={() => Edit(s)} className="btn"><i className="fas fa-edit"></i>&nbsp;Editar</Link></td>*/}
-                            <td><Link className="btn"><i className="fas fa-info"></i>&nbsp;Detalhe</Link></td>
-                            <td><Link className="btn"><i className="fas fa-trash"></i>&nbsp;Deletar</Link></td>
+                           
                         </tr>
                     ))}
 

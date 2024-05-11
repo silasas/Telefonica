@@ -68,7 +68,24 @@ namespace Consolida.API
             Banco3Service b3s = new Banco3Service();
             var price = b3s.GetAllPrices().Result;
 
-            return Ok();
+            List<CustomerProductPrice> list = new List<CustomerProductPrice>();
+
+            foreach (var customer in customers)
+            {
+                CustomerProductPrice cpp = new CustomerProductPrice();
+
+                cpp.CustomerCode = customer.Code;
+                cpp.ProductCode = product.Where(s => s.CustomerCode == customer.Code).Select(s => s.Code).FirstOrDefault().ToString();
+                cpp.FirstName = customer.FirstName;
+                cpp.MiddleName = customer.MiddleName;
+                cpp.SurName = customer.SurName;
+                cpp.Product = product.Where(s => s.CustomerCode == customer.Code).Select(s => s.Name).FirstOrDefault().ToString();
+                cpp.Price = price.Where(s => s.ProductCode == cpp.ProductCode).Select(s => s.Price).FirstOrDefault();
+
+                list.Add(cpp);
+            }
+
+            return Ok(list);
         }
     }
 }
