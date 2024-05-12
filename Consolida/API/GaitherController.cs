@@ -88,7 +88,7 @@ namespace Consolida.API
             return Ok(list);
         }
 
-        //[HttpPost("import-csv-file")]
+        
         [HttpPost]
         [AllowAnonymous]
         [Route("import-csv-file")]

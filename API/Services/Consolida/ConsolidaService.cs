@@ -45,7 +45,7 @@ namespace API.Services.Consolida
             }
         }
 
-        public async Task<string> ExportCsv(string path, string _filename)
+        public async Task<string> ExportCsv(string path)
         {
             try
             {

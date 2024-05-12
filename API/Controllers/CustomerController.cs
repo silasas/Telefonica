@@ -16,7 +16,6 @@ namespace API.Controllers
         [Route("post-csv-file")]
         public async Task<IActionResult> CsvFileImport(IFormFile file)
          {
-
             var filepath = Path.Combine("Files",file.FileName);
 
             using (Stream fileStream = new FileStream(filepath, FileMode.Create)) 
@@ -25,9 +24,13 @@ namespace API.Controllers
             }
 
             ConsolidaService cs = new ConsolidaService();
-            var result = cs.ExportCsv(filepath, file.FileName);
+            var result = cs.ExportCsv(filepath).Result;
+            
+            if (result == "ok") {
+                return Ok();
+            }
 
-            return Ok();
+            return BadRequest();
         }
 
         [HttpGet]
