@@ -1,9 +1,13 @@
-﻿using Consolida.Models;
+﻿using Consolida.MapeamentoCsv;
+using Consolida.Models;
 using Consolida.Services.Banco1;
 using Consolida.Services.Banco2;
 using Consolida.Services.Banco3;
+using CsvHelper;
+using CsvHelper.Configuration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using System.Globalization;
 
 namespace Consolida.API
 {
@@ -99,9 +103,36 @@ namespace Consolida.API
                 return BadRequest();
             }
 
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture)
+            {
+                HasHeaderRecord = true,
+            };
 
+            var filepath = Path.Combine("Files", file.FileName);
 
+            using (Stream fileStream = new FileStream(filepath, FileMode.Create))
+            {
+                file.CopyTo(fileStream);
+            }
 
+            using (var reader = new StreamReader(filepath))
+            using (var csv = new CsvReader(reader, config))
+            {
+                csv.Context.RegisterClassMap<CustomerCsv>();
+                var result = csv.GetRecord<Customer>();
+
+                var response = new Customer { };
+
+                response.Id = result.Id;
+                response.CustomerCode = result.CustomerCode;
+                response.ProductCode = result.ProductCode;
+                response.FirstName = result.FirstName;
+                response.MiddleName = result.MiddleName;
+                response.SurName = result.SurName;
+                response.Product = result.Product;
+                response.Price = result.Price;
+            }
+            
             return Ok();
         }
     }
