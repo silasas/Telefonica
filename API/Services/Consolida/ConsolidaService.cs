@@ -1,5 +1,6 @@
 ﻿using API.Json;
 using Newtonsoft.Json;
+using System.Net.Http.Headers;
 
 namespace API.Services.Consolida
 {
@@ -44,9 +45,38 @@ namespace API.Services.Consolida
             }
         }
 
-        //public async Task<Customer_Response_Json> UploadCsv()
-        //{
+        public async Task<string> ExportCsv(string path, string _filename)
+        {
+            try
+            {
+                using var client = new HttpClient();
+                var apiUrl = new Uri("https://localhost:7134/api/Gaither/import-csv-file");
 
-        //}
+                string filePath = path;
+                using var form = new MultipartFormDataContent();
+                using var fileContent = new ByteArrayContent(await File.ReadAllBytesAsync(filePath));
+                fileContent.Headers.ContentType = MediaTypeHeaderValue.Parse("multipart/form-data");
+
+                form.Add(fileContent, "file", Path.GetFileName(filePath));
+
+                var response = await client.PostAsync(apiUrl, form);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var responseContent = await response.Content.ReadAsStringAsync();
+                    return "ok";
+                }
+
+                else
+                {
+                    return "fail";
+                }
+            }
+
+            catch
+            {
+                return null;
+            }
+        }
     }
 }

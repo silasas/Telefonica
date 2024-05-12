@@ -87,5 +87,19 @@ namespace Consolida.API
 
             return Ok(list);
         }
+
+        //[HttpPost("import-csv-file")]
+        [HttpPost]
+        [AllowAnonymous]
+        [Route("import-csv-file")]
+        public async Task<IActionResult> CsvFileImport(IFormFile file)
+        {
+            if (file == null)
+            {
+                return BadRequest();
+            }
+
+            return Ok();
+        }
     }
 }

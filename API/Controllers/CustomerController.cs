@@ -3,6 +3,7 @@ using API.Services.Consolida;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.IO;
 
 namespace API.Controllers
 {
@@ -13,17 +14,20 @@ namespace API.Controllers
         [HttpPost]
         [AllowAnonymous]
         [Route("post-csv-file")]
-        public async Task<List<Customer_Response_Json>> CsvFileImport(IFormFile file)
+        public async Task<IActionResult> CsvFileImport(IFormFile file)
          {
-            var result = new List<Customer_Response_Json>();
 
+            var filepath = Path.Combine("Files",file.FileName);
 
+            using (Stream fileStream = new FileStream(filepath, FileMode.Create)) 
+            {
+                file.CopyTo(fileStream);
+            }
 
+            ConsolidaService cs = new ConsolidaService();
+            var result = cs.ExportCsv(filepath, file.FileName);
 
-
-
-
-            return result;
+            return Ok();
         }
 
         [HttpGet]
