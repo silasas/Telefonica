@@ -1,6 +1,5 @@
-import api from '../../services/upload/upload_api';
 import 'bootstrap/dist/css/bootstrap.min.css'
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import '../upload/upload.css'
 import axios from 'axios';
 
@@ -10,6 +9,19 @@ const FileUpload = () => {
 
     const handleFileSelect = (event) => {
         setSelectedFile(event.target.files[0]);
+
+        const file = event.target.files[0];
+
+        if (file && file.name === 'arquivo_lote.csv') {
+
+            setSelectedFile(file);
+
+        } else {
+
+            alert('Por favor, selecione o arquivo "arquivo_lote.csv".');
+            window.location.reload(false);
+        }
+
     };
 
     const handleSubmit = async (event) => {
@@ -37,7 +49,6 @@ const FileUpload = () => {
 
     return (
 
-
         <div className="upload-container">
 
             <div className="d-flex align-items-xl-center justify-content-center windows">
@@ -49,10 +60,11 @@ const FileUpload = () => {
 
                             <button type="submit" className="btn btn-dark" id="inputGroupFileAddon03"> Upload </button>
 
-                            <input type="file" name="file" className="form-control" id="inputGroupFile03" multiple required
+                            <input type="file" accept=".csv" name="file" className="form-control" id="inputGroupFile03" multiple required
                                 aria-describedby="inputGroupFileAddon03" aria-label="Upload"
                                 onChange={handleFileSelect}
                             />
+
                         </div>
                     </div>
                 </form>
@@ -60,5 +72,6 @@ const FileUpload = () => {
         </div>
     );
 };
+
 
 export default FileUpload;
