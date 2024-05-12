@@ -106,6 +106,7 @@ namespace Consolida.API
             var config = new CsvConfiguration(CultureInfo.InvariantCulture)
             {
                 HasHeaderRecord = true,
+                Delimiter = ";",
             };
 
             var filepath = Path.Combine("Files", file.FileName);
@@ -119,20 +120,21 @@ namespace Consolida.API
             using (var csv = new CsvReader(reader, config))
             {
                 csv.Context.RegisterClassMap<CustomerCsv>();
-                var result = csv.GetRecord<Customer>();
+                var result = csv.GetRecords<Customer>().ToList();
 
-                var response = new Customer { };
-
-                response.Id = result.Id;
-                response.CustomerCode = result.CustomerCode;
-                response.ProductCode = result.ProductCode;
-                response.FirstName = result.FirstName;
-                response.MiddleName = result.MiddleName;
-                response.SurName = result.SurName;
-                response.Product = result.Product;
-                response.Price = result.Price;
+                foreach (var item in result)
+                {
+                    item.Id = result.Select(s => s.Id).FirstOrDefault();
+                    item.CustomerCode = result.Select(s => s.CustomerCode).FirstOrDefault();
+                    item.ProductCode = result.Select(s => s.ProductCode).FirstOrDefault();
+                    item.FirstName = result.Select(s => s.FirstName).FirstOrDefault();
+                    item.MiddleName = result.Select(s => s.MiddleName).FirstOrDefault();
+                    item.SurName = result.Select(s => s.SurName).FirstOrDefault();
+                    item.Product = result.Select(s => s.Product).FirstOrDefault();
+                    item.Price = result.Select(s => s.Price).FirstOrDefault();
+                }
             }
-            
+
             return Ok();
         }
     }
