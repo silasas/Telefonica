@@ -51,7 +51,7 @@ const FileUpload = () => {
 
         <div className="upload-container">
 
-            <div className="d-flex align-items-xl-center justify-content-center windows">
+            <div className="d-flex align-items-xl-center justify-content-center" style={{ height: "700px" }}>
 
                 <form onSubmit={handleSubmit}>
 
